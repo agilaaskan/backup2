@@ -1,0 +1,276 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) :?>
+     <?php
+      // custom code
+      $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+      $customerSession = $objectManager->create('Magento\Customer\Model\Session'); 
+      $date = date_default_timezone_set('Asia/Kolkata');
+      $currentdate = date('Y-m-d'); 
+      $curorderid = $block->getOrderId();
+      if (!empty($curorderid)) {
+
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+        $sqls = "SELECT *  FROM `sales_order` WHERE `increment_id` = '$curorderid' LIMIT 1";
+        $results = $connection->fetchAll($sqls);
+          foreach ($results as $rows) {
+            $grandtotals = $rows["grand_total"];
+          }
+        $sqls1 = "SELECT sales_order_address.telephone,sales_order_address.firstname,sales_order_address.lastname,sales_order_address.email FROM `sales_order` INNER JOIN sales_order_address ON sales_order.entity_id = sales_order_address.parent_id WHERE increment_id = '$curorderid' LIMIT 1";
+        $results1 = $connection->fetchAll($sqls1);
+          foreach ($results1 as $rows1) {
+            $telephone = $rows1["telephone"];
+            $firstname = $rows1["firstname"];
+            $lastname = $rows1["lastname"];
+            $cemail = $rows1["email"];
+          }
+          $cusname = $firstname." ".$lastname;
+        if($customerSession->isLoggedIn()) {
+          $checkem = $customerSession->getCustomer()->getEmail(); // get Email
+          $checkid =  $customerSession->getCustomer()->getId(); // get Id
+          $checkname =  $customerSession->getCustomer()->getName(); // get Id
+        } else {
+          $sqls2 = "SELECT * FROM whatsapp_guest_customer ORDER BY guest_id DESC LIMIT 1";
+          $results2 = $connection->fetchAll($sqls2);
+          if(count($results2)>0){
+            foreach($results2 as $rows2){
+                $checkid = $rows2["guest_id"];
+                $checkid++;
+            }
+          }else {
+            $checkid = 1111111;
+          }
+          $guestid = $checkid;
+          $checkem =  "$cemail";
+          $checkname =  "$cusname";
+
+        }
+        // customer custom code                    
+        $curl = curl_init();
+
+          curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.interakt.ai/v1/public/track/users/',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+           "userId": "'.$checkid.'",
+          "phoneNumber": "'.$telephone.'",
+          "countryCode": "+91",
+          "traits": {
+          "name": "'.$checkname.'",
+          "email": "'.$checkem.'"
+                    }
+           }',
+          CURLOPT_HTTPHEADER => array(
+          'Content-Type: application/json',
+          'Authorization: Basic UzQteTBVSmZvbzBsX2k4NFhWMUo1UXRfOExua2ZKd0ZRajNSNHZCLTM5STo='
+            ),
+          ));
+
+          $response = curl_exec($curl);
+
+          curl_close($curl);
+          // customer custom code
+           $curl = curl_init();
+
+
+          curl_setopt_array($curl, array(
+          CURLOPT_URL => 'https://api.interakt.ai/v1/public/track/events/',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "userId":  "'.$checkid.'",
+             "event": "OrderPlaced",
+            "traits": {
+                "orderCreatedBy":"'.$checkname.'",
+                "orderNumber": "'.$curorderid.'",
+                "orderValue":"'.$grandtotals.'",
+                "currency": "INR"
+                },
+              "createdAt": "'.$currentdate.'"
+              }',
+            CURLOPT_HTTPHEADER => array(
+              'Content-Type: application/json',
+              'Authorization: Basic UzQteTBVSmZvbzBsX2k4NFhWMUo1UXRfOExua2ZKd0ZRajNSNHZCLTM5STo='
+            ),
+            ));
+              
+            $response = curl_exec($curl);
+              
+            curl_close($curl);
+          // custom code
+          if(!($customerSession->isLoggedIn())) {
+          $sqls3 = "INSERT INTO whatsapp_guest_customer (guest_id) VALUES ($guestid)";
+          $connection->query($sqls3);
+          }
+      }
+      ?>
+
+        <?php
+    $orderId   =   $block->getOrderId();
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+    $order = $objectManager->create('\Magento\Sales\Model\Order')->load($orderId);
+    $orderItems = $order->getAllItems();
+    // custom code
+    $lid2 = $block->getOrderId();
+    $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+    $connection = $resource->getConnection();
+    $sql3 = "SELECT *  FROM `sales_order` WHERE `increment_id` = '$lid2' LIMIT 1";
+    $result3 = $connection->fetchAll($sql3);
+    foreach ($result3 as $row3) {
+      $oid3 = $row3["entity_id"];
+    }  
+    $sql4 = "SELECT *  FROM `sales_order_item` WHERE  `product_type` LIKE 'simple' AND `order_id` = '".$oid3."' ";
+        $result4 = $connection->fetchAll($sql4);
+            if(count($result4)> 0){
+              foreach($result4 as $row4){
+                $productArray[] = array(
+                  "product_sku" => $row4["sku"],
+                  "product_magento_id" => $row4["product_id"],
+                  "product_name" => $row4["name"],
+                  "product_qty" => $row4["qty_ordered"],
+                  "product_price" => $row4["price"],
+                  "product_discount_amount" => $row4["discount_amount"],
+                  "product_row_price" => $row4["price"] - $row4["discount_amount"],
+                  );
+              }
+            }
+    // custom code
+    ?> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131039218-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-131039218-1');
+    </script>
+
+    <script>
+    gtag('event', 'purchase', {
+      <?php 
+          // custom code
+        $lid = $block->getOrderId();
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+        $sql = "SELECT *  FROM `sales_order` WHERE `increment_id` = '$lid' LIMIT 1";
+        $result = $connection->fetchAll($sql);
+        foreach ($result as $row) {
+            $oid = $row["entity_id"];
+            $grandtotal = $row["grand_total"];
+            $tax = $row["base_tax_amount"];
+            $shipamt = $row["base_shipping_amount"]; 
+        }  
+        // custom code
+        ?>
+      "transaction_id": "<?php echo $orderId;?>",
+      "affiliation": "Ulamart online store",
+      "value": "<?php echo $grandtotal;?>",
+      "currency": "INR",
+      "tax": "<?php echo $tax;?>",
+      "shipping": "<?php echo $shipamt;?>",
+      "items": [
+        <?php
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();        
+        $sql1 = "SELECT *  FROM `sales_order_item` WHERE  `product_type` LIKE 'simple' AND `order_id` = '".$oid."' ";
+        $result1 = $connection->fetchAll($sql1);
+            if(count($result1)> 0){
+              foreach($result1 as $row1){
+                $productid = $row1["product_id"];
+                $sku = $row1["sku"];
+                $pname = $row1["name"];
+                $qtyorder = $row1["qty_ordered"];
+                $price = $row1["price"];
+                $ptax = $row1["tax_amount"];
+                $pdisc = $row1["discount_amount"];
+                $_product = $objectManager->create('Magento\Catalog\Model\Product')->load($productid);
+                $categoryIds = $_product->getCategoryIds();
+                $j = 0;
+                foreach($categoryIds as $key => $category){
+                $j++;
+                $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+                $cid = $cat->getId();
+                  if(($cid != 27) && ($cid != 2) && ($cid != 22) && ($cid != 23)) {
+                    $catl = $cat->getName();
+                }
+              } 
+                  ?>
+                {
+                  "id": "<?php echo $productid;?>",
+                  "name": "<?php echo $pname;?>",
+                  "brand": "Ulamart",
+                  "category": "<?php echo $catl;?>",
+                  "list_position": 1,
+                  "quantity": '<?php echo $qtyorder; ?>',
+                  "price": '<?php echo round($price); ?>'
+                },
+                <?php 
+              }
+            }
+        ?>
+
+    ]
+    });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-985777216"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-985777216');
+    </script>
+    <script>
+      gtag('event', 'conversion',{
+        <?php 
+          // custom code
+        $lid = $block->getOrderId();
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+        $connection = $resource->getConnection();
+        $sql2 = "SELECT *  FROM `sales_order` WHERE `increment_id` = '$lid' LIMIT 1";
+        $result2 = $connection->fetchAll($sql2);
+        foreach ($result2 as $row2) {
+            $grandtotal2 = $row2["grand_total"];
+        }  
+        // custom code
+        ?>
+          'send_to': 'AW-985777216/Z5yxCM6Fu6wBEMCIh9YD',
+          'transaction_id': '<?php echo $orderId;?>',
+          'value': '<?php echo $grandtotal2;?>',
+          'currency': 'INR',
+      });
+    </script>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= $block->escapeHtml(__('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+        <?php  else :?>
+            <p><?= $block->escapeHtml(__('Your order is: #<span>%1</span>.', $block->getOrderId()), ['span']) ?></p>
+        <?php endif;?>
+            <p><?= $block->escapeHtml(__('We\'ll email you an order confirmation with details and tracking info.')) ?></p>
+    <?php endif;?>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+        </div>
+    </div>
+</div>

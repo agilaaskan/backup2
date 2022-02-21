@@ -1,0 +1,33 @@
+<div class="custom-salebtn">
+    <label for="vehicle1">Show Sale Only</label>
+    <input type="checkbox" id="customsale" name="sale1" value="Sale">
+</div>
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        let url_string = document.location.href;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("csale");
+        if (c == 1) {
+            $('#customsale').prop('checked', true);
+        }
+        $('#customsale').change(function() {
+
+            if (this.checked === true) {
+                if (document.location.href.includes('?')) {
+                    var url = document.location.href + "&csale=1";
+                } else {
+                    var url = document.location.href + "?csale=1";
+                }
+                document.location = url;
+            } else {
+                let url_replace = window.location.href;
+                url_replace = url_replace.replace('&csale=1', '');
+                url_replace = url_replace.replace('?csale=1', '');
+                url_replace = url_replace.replace('csale=1&', '');
+                document.location = url_replace;
+            }
+        });
+    });
+});
+</script>

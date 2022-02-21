@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Rootways Inc. Team
+ * @copyright Copyright (c) 2021 Rootways (https://www.rootways.com)
+ * @package Rootways_Canadapost
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Shipping\Model\Shipping\LabelGenerator">
+        <plugin name="rw_canadapost_before_labelgenerator" type="Rootways\Canadapost\Plugin\Shipping\Model\Shipping\LabelGenerator"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Shipment">
+        <plugin name="rw_canadapost_afters_save_shipment"
+                type="Rootways\Canadapost\Plugin\Sales\Model\Order\Shipment"/>
+    </type>
+    <virtualType name="Rootways\Canadapost\Model\ResourceModel\Manifest\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rw_canadapost_manifest</argument>
+            <argument name="resourceModel" xsi:type="string">Rootways\Canadapost\Model\ResourceModel\Manifest</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Rootways\Canadapost\Model\ResourceModel\ViewManifest\Grid\Collection" type="Rootways\Canadapost\Ui\DataProvider\ManifestView\Listing\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rw_canadapost_shipment</argument>
+            <argument name="resourceModel" xsi:type="string">Rootways\Canadapost\Model\ResourceModel\ViewManifest</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rwcanadapost_manifest_listing_data_source" xsi:type="string">Rootways\Canadapost\Model\ResourceModel\Manifest\Grid\Collection</item>
+                <item name="rwcanadapost_manifest_view_listing_data_source" xsi:type="string">Rootways\Canadapost\Model\ResourceModel\ViewManifest\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+     <!-- Debug Log -->
+    <virtualType name="Rootways\Canadapost\Model\Method\VirtualDebug" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/rw_canadapost.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Rootways\Canadapost\Model\Method\VirtualLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="debug" xsi:type="object">Rootways\Canadapost\Model\Method\VirtualDebug</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Rootways\Canadapost\Model\Method\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">Rootways\Canadapost\Model\Method\VirtualLogger</argument>
+        </arguments>
+    </type>
+</config>

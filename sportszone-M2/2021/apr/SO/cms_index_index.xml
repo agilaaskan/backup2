@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+ <head>
+        <remove src="mage/calendar.css"/>
+        <remove src="https://pro.fontawesome.com/releases/v5.13.0/css/all.css"/>
+        <remove src="css/styles-m.css"/>
+        <remove src="css/custom.css"/>
+        <remove src="css/print.css"/>
+        <remove src="css/owl.carousel.css"/>
+        <remove src="css/owl.carousel.min.css"/>
+        <remove src="css/owl.theme.default.min.css"/>
+        <remove src="MageWorx_SearchSuiteAutocomplete::css/searchsuiteautocomplete.css"/>
+        <remove src="Magenest_RewardPoints::css/reward-landing.css"/>
+        <remove src="Ves_All::lib/bootstrap/css/bootstrap-tiny.css"/>
+        <remove src="Ves_All::lib/owl.carousel/assets/owl.carousel.css"/>  
+        <remove src="Ves_Megamenu::css/font-awesome.min.css"/>
+        <remove src="Ves_Megamenu::css/styles.css"/>
+        <remove src="Ves_Megamenu::css/animate.min.css"/>
+        <remove src="css/styles-l.css"/>
+        <remove src="Magenest_RewardPoints::css/referral.css"/>
+        <remove src="Magenest_RewardPoints::css/share.css"/>
+        <remove src="Magenest_RewardPoints::css/font-awesome.css"/>
+        <remove src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <remove src="mage/polyfill.js"/>
+        <remove src="js/owlcarousel.js"/>
+        <remove src="js/custom.js"/>
+    </head>
+    <body/>
+</page>
+

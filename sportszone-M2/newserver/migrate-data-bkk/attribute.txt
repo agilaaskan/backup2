@@ -1,0 +1,79 @@
+oversize_comment
+oversize_item
+Let Us Know What Sales You’re Interested In - pending
+Available US
+Available canada
+Specifications
+Skate Sharpening- Free!
+Size Chart
+Preorder comments
+Preorderl
+New Hockey Arrivals
+New Goalie Arrivals
+Is Feature
+New baseball Arrivals
+
+
+Venus menu 
+b0b4xp0-jg1x8g-ufjn-zz573n-bwp17
+
+11-12
+12.30-2
+catalog_category_entity
+catalog_category_entity_datetime
+catalog_category_entity_decimal
+catalog_category_entity_int
+catalog_category_entity_text
+catalog_category_entity_varchar
+
+
+
+
+1.setting migration
+2.data migation
+3.Add design folder files and run command
+4.To unzip image folders
+5.update max_qty =1000 in cataloginventory_stock_item`
+    UPDATE `cataloginventory_stock_item` SET `use_config_min_sale_qty` = '1000.0000'  WHERE `use_config_min_sale_qty` = 0;
+6.add js and xml file
+    /vendor/magento/module-configurable-product/view/frontend/web/js
+    /vendor/custom-account.xml
+7.add code files and install all plugins
+    use local sale filer plugin
+8.add license for ves 
+    venus menu license (b0b4xp0-jg1x8g-ufjn-zz573n-bwp17)
+9.adding extra product attributes
+10.import ves megamenu, block,page,
+11.Add widget
+12.unzip category image,all image folder
+13.Update category,blog,reward point table tables
+14.set min qty 1
+15.configure plugin settings
+16.email template update
+17.To remove manufacture advertised price in all products
+    UPDATE `catalog_product_entity_decimal` SET `value` = NULL WHERE `attribute_id` = 120 AND `value` IS NOT NULL;
+18.To add products in new product slider
+sku:
+57715
+57887
+51336
+20829
+51336
+19.Add reward points rule
+20.add placeholder image
+21.UPDATE `catalog_category_entity_varchar` SET `value` = '1column' WHERE `attribute_id` = 61 AND `entity_id` IN (2656,3198,2670,2738,3200,3191,3153,3211,2795,3018,2756,2658,3201,2812,3213,2683,3003,2814,2743,3192,3175,2660,2797,3176,2751,3177,3178,3185,3181,3193,2822,2688,2657,2663,3202,2653,2684,3203,2690,3171,3204,2673,3205,3088,2949,2675,2676,3207,3161,2664,3189,3194,2693,2716,3195,3197,3209,2654);
+22. remove cache folder and reindex
+
+bugs:
+1.hockey skate have 1 cloumn
+2.need to add email templates header,footer and all email templates
+
+.custom-salebtn {
+    text-align: right;
+}
+canda post:
+Api:
+user: 7ccbf958ae35dc37
+ Pwd: c9a0dc257ab9dee6960050
+Customer number: 0008333107
+cache/b6d3416f8fd3f9bfc7dc8bc687c4e2c1/2/3/2344114_1.jpg

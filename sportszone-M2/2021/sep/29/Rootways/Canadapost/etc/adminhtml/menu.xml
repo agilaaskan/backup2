@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Rootways Inc. Team
+ * @copyright Copyright (c) 2021 Rootways (https://www.rootways.com)
+ * @package Rootways_Canadapost
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Rootways_Canadapost::rwcanadapost"
+            title="Rootways"
+            translate="title"
+            module="Rootways_Canadapost"
+            sortOrder="10"
+            parent="Magento_Sales::sales"
+            dependsOnModule="Rootways_Canadapost"
+            resource="Rootways_Canadapost::rwcanadapost_shipping" />
+
+        <add id="Rootways_Canadapost::manifest"
+            title="Canada Post Manifest"
+            translate="title"
+            module="Rootways_Canadapost"
+            sortOrder="20"
+            parent="Rootways_Canadapost::rwcanadapost"
+            action="rwcanadapost/manifest"
+            resource="Rootways_Canadapost::rwcanadapost_shipping" />
+    </menu>
+</config>

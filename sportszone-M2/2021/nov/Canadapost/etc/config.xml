@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Rootways Inc. Team
+ * @copyright Copyright (c) 2021 Rootways (https://www.rootways.com)
+ * @package Rootways_Canadapost
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <carriers> 
+		    <rwcanadapost>
+                <active>1</active>
+                <title>Canada Post Shipping By Rootways</title>
+                <model>Rootways\Canadapost\Model\Carrier</model>
+                <allowed_methods>DOM.RP,DOM.EP,DOM.LIB,DOM.PC,DOM.XP,DOM.XP.CERT,USA.EP,USA.PW.ENV,USA.PW.PAK,USA.PW.PARCEL,USA.SP.AIR,USA.TP,USA.TP.LVM,USA.XP,INT.IP.AIR,INT.IP.SURF,INT.XP,INT.PW.ENV,INT.PW.PAK,INT.PW.PARCEL,INT.SP.AIR,INT.SP.SURF,INT.TP</allowed_methods>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <max_package_weight>70</max_package_weight>
+                <rates_price_type>1</rates_price_type>
+            </rwcanadapost>
+		</carriers>
+    </default>
+</config>

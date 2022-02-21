@@ -1,0 +1,34 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$subcats = $category->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); ?>
+    <ul class="category-section">
+    <?php foreach ($subcats as $_category){ ?>
+       <?php  if ($_category->getIsActive()) {
+     $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($_category->getId());
+     $_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+     $image1=$_category->getImageUrl(); ?>
+ 	 <?php $_name = $_category->getName()?>
+            <li class="subcat">
+                <a href="<?php echo $_category->getUrl() ?>" title="<?php echo $_name ?>">
+                   <img src="<?php echo $baseUrl.$image1 ?>">
+                   
+                </a>
+              
+				<div class="category-title">
+                <a href="<?php echo $_category->getUrl() ?>" title="<?php echo $_name ?>">
+                    <?php echo $_name ?>
+                </a>
+       			 </div>
+            </li>
+
+        <?php 
+       }
+        }
+        ?> 
+    </ul>

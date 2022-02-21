@@ -1,0 +1,10 @@
+<?php
+
+$product = $block->getProduct();
+$feat1=$product->getData('features_textbox');
+if ($feat1 != '') {
+?>
+<div class="custom-feature1"><?php echo $feat1; ?></div>
+<?php }else { ?>
+<p>Not Available</p>
+<?php } ?>

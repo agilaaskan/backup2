@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Rootways Inc. Team
+ * @copyright Copyright (c) 2021 Rootways (https://www.rootways.com)
+ * @package Rootways_Canadapost
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="form">
+            <action method="setTemplate" ifconfig="carriers/rwcanadapost/quote_type">
+                <argument name="template" xsi:type="string">Rootways_Canadapost::view/form.phtml</argument>
+            </action>
+            <referenceBlock name="shipment_packaging">
+                <action method="setTemplate" ifconfig="carriers/rwcanadapost/quote_type">
+                    <argument name="template" xsi:type="string">Rootways_Canadapost::order/packaging/popup.phtml</argument>
+                    <!--<argument name="template" xsi:type="helper" helper="Rootways\Canadapos\Helper\Data::allowCustomValueToShipmentForm"></argument>-->
+                </action>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>
+

@@ -1,0 +1,48 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Update to your "}}{{var store.getFrontendName()}} {{trans" invoice"}} @-->
+<!--@vars {
+"var billing.name":"Guest Customer Name",
+"var comment|escape|nl2br":"Invoice Comment",
+"var invoice.increment_id":"Invoice Id",
+"var order.increment_id":"Order Id",
+"var order_data.frontend_status_label":"Order Status",
+"var store.frontend_name":"Store Frontend Name",
+"var store_phone":"Store Phone",
+"var store_email":"Store Email",
+"var store_hours":"Store Hours"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{var billing.name}}</p>
+            <p>
+                {{trans "Your order "}} {{var order.increment_id}} {{trans " has been updated with a status of "}} <strong>{{var order_data.frontend_status_label}}</strong>.
+            </p>
+            <p>
+                {{trans "If you have questions about your order, you can email us at"}} {{var store_email}} {{trans 'or call us at' }}{{var store_phone}}.
+                {{trans 'Our hours are' }} {{var store_hours}}.
+            </p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{depend comment}}
+            <table class="message-info">
+                <tr>
+                    <td>
+                        {{var comment|escape|nl2br}}
+                    </td>
+                </tr>
+            </table>
+            {{/depend}}
+        </td>
+    </tr>
+</table>
+

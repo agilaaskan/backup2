@@ -1,0 +1,39 @@
+{
+    "rw_canadapost_manifest": {
+        "column": {
+            "id": true,
+            "manifest_id": true,
+            "group_id": true,
+            "store_id": true,
+            "order_id": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "RW_CANADAPOST_MANIFEST_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "rw_canadapost_shipment": {
+        "column": {
+            "id": true,
+            "increment_id": true,
+            "magento_shipment_id": true,
+            "store_id": true,
+            "created_at": true,
+            "updated_at": true,
+            "manifest_id": true,
+            "canadapost_shipment_id": true,
+            "canadapost_tracking_number": true,
+            "canadapost_shipment_amount": true,
+            "rated_weight": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "RW_CANADAPOST_SHIPMENT_STORE_ID_STORE_STORE_ID": true,
+            "FK_FC57158F55E97AEA25E86F6D350322C3": true,
+            "RW_CANADAPOST_SHIPMENT_MANIFEST_ID_RW_CANADAPOST_MANIFEST_ID": true
+        }
+    }
+}

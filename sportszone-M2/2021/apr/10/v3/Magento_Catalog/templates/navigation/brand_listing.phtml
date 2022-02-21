@@ -1,0 +1,47 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$subcats = $category->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+
+
+<p class="brand-top-list">
+<?php foreach (range('A', 'Z') as $char) { ?>
+<a title="Brands starting with <?php echo $char ?>" href="#<?php echo $char ?>-brands"><?php echo $char ?>&nbsp</a>
+<?php } ?>
+</p>
+<hr>
+
+
+<div class="subcat-directory">
+    <dl class="subcat-section">
+    <?php $prev_sect = ''; ?>
+
+        <?php foreach ($subcats as $_category){ ?>
+       <?php  if ($_category->getIsActive()) {
+     $_category = $objectManager->create('Magento\Catalog\Model\Category')->load($_category->getId());
+     $_outputhelper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+            <?php $_name = $_category->getName()?>
+
+            <?php // Section Header ?>
+            <?php $cur_sect = ctype_digit($_name[0])?'#':$_name[0]; ?>
+            <?php if(strcasecmp($cur_sect, $prev_sect)): ?>
+                <a id="<?php echo ucfirst($cur_sect) ?>-brands"></a>
+                <dt class="letter-head"><?php echo ucfirst($cur_sect) ?></dt>
+            <?php endif; ?>
+
+            <dd class="subcat">
+                <a href="<?php echo $_category->getUrl() ?>" title="<?php echo $_name ?>">
+                    <?php echo $_name ?>
+                </a>
+            </dd>
+
+            <?php $prev_sect = $cur_sect ?>
+        <?php 
+       }
+        }
+        ?>
+        
+    </dl>
+</div>

@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Rootways Inc. Team
+ * @copyright Copyright (c) 2021 Rootways (https://www.rootways.com)
+ * @package Rootways_Canadapost
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="rootways_extensions" translate="label" sortOrder="51" class="rootways-configtab">
+            <label>Rootways Extensions</label>
+        </tab>
+        <section id="rootways_canadapost_license" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Canada Post Shipping</label>
+			<tab>rootways_extensions</tab>
+			<resource>Rootways_Canadapost::config_canadapost</resource>
+			<group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Settings</label>
+                <field id="card_settings_heading" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status:</label>
+                    <frontend_model>Rootways\Canadapost\Block\System\Config\Heading</frontend_model>
+                </field>
+                <field id="licencekey" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>License Key</label>
+                    <comment>Please enter license key for this extension that was emailed by us to you after your purchase.</comment>
+                </field>
+                <field id="ismultistore" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Multi Store</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If your website has multiple stores with different URLs then set this option to Yes and contact us for register multi-store license key.</comment>
+                </field>
+			</group>
+		</section>
+        
+        <section id="carriers" translate="label" type="text" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="rwcanadapost" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Canada Post Shipping by Rootways</label>
+                
+                <field id="card_settings_heading" translate="label comment" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Status:</label>
+                    <frontend_model>Rootways\Canadapost\Block\System\Config\Heading</frontend_model>
+                </field>
+                
+                <field id="active" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="mode" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Mode</label>
+                    <source_model>Rootways\Canadapost\Model\Source\ShippingMode</source_model>
+                </field>
+                
+                <field id="locale" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Locale</label>
+                    <comment>In which language do you want to receive the Canada post shipping error messages?</comment>
+                    <source_model>Rootways\Canadapost\Model\Source\Locale</source_model>
+                </field>
+                
+                <field id="title" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                
+                <field id="name" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Method Name</label>
+                </field>
+
+                <field id="quote_type" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Quote Type</label>
+                    <source_model>Rootways\Canadapost\Model\Source\QuoteType</source_model>
+                </field>
+                
+                <field id="apikey" translate="label" type="obscure" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>API Key</label>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment><![CDATA[Add your Canada Post account API username here. <a target="_blank" href="https://www.rootways.com/pub/media/wysiwyg/description_m2/canadapost/system_xml/canadapost_api_key.jpg">Click here</a> to check the the screenshot. <a target="_blank" href="https://www.canadapost.ca/cpo/mc/business/productsservices/developers/services/gettingstarted.jsf">Click here</a> to know how to getting started.]]></comment>
+				</field>
+                
+                <field id="password" translate="label" type="obscure" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Password</label>
+					<backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+				</field>
+                
+                <field id="customer" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Customer Number</label>
+                    <!--<depends>
+                        <field id="quote_type">1</field>
+                    </depends>-->
+                </field>
+
+                <field id="contract_id" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Contract ID</label>
+                    <validate>required-entry no-whitespace</validate>
+                    <depends>
+                        <field id="quote_type">1</field>
+                    </depends>
+                </field>
+
+                <field id="method_of_payment" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Method of Payment</label>
+                    <source_model>Rootways\Canadapost\Model\Source\MethodOfPayment</source_model>
+                    <depends>
+                        <field id="quote_type">1</field>
+                    </depends>
+                </field>
+                
+                <field id="allowed_methods" translate="label" type="multiselect" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Allowed Shipping Services</label>
+                    <source_model>Rootways\Canadapost\Model\Source\ShippingMethod</source_model>
+                </field>
+                
+                <field id="show_delivery_date" translate="label comment" type="select" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Estimated Delivery Date</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Choose whether want to display Estimated Delivery Date with the title of shipping method or not.</comment>
+                </field>
+                
+                <field id="handling_type" translate="label comment" type="select" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Handling Fee Type</label>
+                    <source_model>Magento\Shipping\Model\Source\HandlingType</source_model>
+                </field>
+                <field id="handling_fee" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Handling Fee</label>
+                </field>
+                
+                <field id="rates_price_type" translate="label comment" type="select" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Rates Price Type</label>
+                    <source_model>Magento\Tax\Model\System\Config\Source\PriceType</source_model>
+                    <comment>Choose whether you want to display shipping method rates including tax or excluding tax at the front-end.</comment>
+                </field>
+                
+                <field id="max_package_weight" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Package Weight</label>
+                    <comment>Value in kilograms. Please consult your shipping carrier for maximum supported shipping weight.</comment>
+                </field>
+                
+                <field id="default_length" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Box Length</label>
+                    <comment>Value in centimeters. Leave it blank or add 0 to ignore this setting. NOTE: Use in Ratting API but it's optional</comment>
+                    <validate>validate-zero-or-greater validate-digits</validate>
+                </field>
+                <field id="default_width" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Box Width</label>
+                    <comment>Value in centimeters. Leave it blank or add 0 to ignore this setting. NOTE: Use in Ratting API but it's optional</comment>
+                    <validate>validate-zero-or-greater validate-digits</validate>
+                </field>
+                <field id="default_height" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Box Height</label>
+                    <comment>Value in centimeters. Leave it blank or add 0 to ignore this setting. NOTE: Use in Ratting API but it's optional</comment>
+                    <validate>validate-zero-or-greater validate-digits</validate>
+                </field>
+                
+                <field id="free_shipping_enable" translate="label" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Free Shipping Threshold</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+
+                <field id="free_shipping_subtotal" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Shipping Amount Threshold</label>
+                    <comment>Calculated on quote Subtotal.</comment>
+                    <depends>
+                        <field id="free_shipping_enable">1</field>
+                    </depends>
+                </field>
+                
+                <field id="free_method_ca" translate="label" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Method for Canada</label>
+                    <source_model>Rootways\Canadapost\Model\Source\FreeShippingMethod</source_model>
+                    <depends>
+                        <field id="free_shipping_enable">1</field>
+                    </depends>
+                </field>
+                
+                <field id="free_method_us" translate="label" type="select" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Method for US</label>
+                    <source_model>Rootways\Canadapost\Model\Source\FreeShippingMethod</source_model>
+                    <depends>
+                        <field id="free_shipping_enable">1</field>
+                    </depends>
+                </field>
+                
+                <field id="free_method_international" translate="label" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Method for International</label>
+                    <source_model>Rootways\Canadapost\Model\Source\FreeShippingMethod</source_model>
+                    <depends>
+                        <field id="free_shipping_enable">1</field>
+                    </depends>
+                </field>
+              
+                <field id="sallowspecific" translate="label" type="select" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+                
+                <field id="showmethod" translate="label" type="select" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <frontend_class>shipping-skip-hide</frontend_class>
+                </field>
+                
+                <field id="show_original_message" translate="label" type="select" sortOrder="380" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Error Message from Canada Post Response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This error message may not be user friendly, so we recommended to set it to "Yes" on the development website only. If it set to "No" then the error message entered to below "Displayed Error Message" text area will be displayed at the front-end when no shipping method will be available.</comment>
+                    <depends>
+                        <field id="showmethod">1</field>
+                    </depends>
+                </field>
+                
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="390" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Displayed Error Message</label>
+                    <depends>
+                        <field id="showmethod">1</field>
+                    </depends>
+                </field>
+                
+                <field id="sort_order" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                </field>
+                
+                <field id="shipping_opt_heading" translate="label" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Shipping Options</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field> 
+                
+                <field id="reason_for_export" translate="label" type="select" sortOrder="460" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Reason for Export</label>
+                    <source_model>Rootways\Canadapost\Model\Source\ReasonForExport</source_model>
+                    <comment>This field is only used if you are shipping products outside your Country. This structure contains information to be printed on the label to facilitate passing through customs at international borders.</comment>
+                </field>
+                
+                <field id="other_reason_for_export" translate="label" type="text" sortOrder="470" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Other Reason for Export</label>
+                    <validate>required-entry</validate>
+                    <comment>Minimum 4 characters; maximum 44 characters.</comment>
+                    <depends>
+                        <field id="reason_for_export">OTH</field>
+                    </depends>
+                </field>
+                
+                <field id="non_delivery_handling_opt" translate="label" type="select" sortOrder="480" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Non-delivery Handling</label>
+                    <source_model>Rootways\Canadapost\Model\Source\NonDeliveryHandlingOptions</source_model>
+                </field>
+                
+
+                <field id="return_label_heading" translate="label" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Return Options</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field> 
+
+                <field id="return_label" translate="label" type="select" sortOrder="610" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[It will include the return label in the shipping label document. NOTE: It will work for Contract Shipping Or Commercial account type only.]]></comment>
+                </field>
+
+                <field id="return_shipping_method" translate="label" type="select" sortOrder="620" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Shipping Method</label>
+                    <source_model>Rootways\Canadapost\Model\Source\ShippingMethod</source_model>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                </field>
+
+                <field id="return_name" translate="label" type="text" sortOrder="630" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Name</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Contact name of the return-recipient.</comment>
+                </field>
+                <field id="return_company" translate="label" type="text" sortOrder="640" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Company</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Contact name of the return-recipient.</comment>
+                </field>
+                <field id="return_address1" translate="label" type="text" sortOrder="650" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Address Line 1</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Address line 1 of return-recipient.</comment>
+                </field>
+                <field id="return_address2" translate="label" type="text" sortOrder="660" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Address Line 2</label>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Address line 2 of return-recipient.</comment>
+                </field>
+                <field id="return_city" translate="label" type="text" sortOrder="670" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>City</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>City of return-recipient.</comment>
+                </field>
+                <field id="return_prov_state" translate="label" type="select" sortOrder="680" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Province</label>
+                    <validate>required-entry</validate>
+                    <source_model>Rootways\Canadapost\Model\Source\Province</source_model>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Province of cod-remittance.</comment>
+                </field>
+                <field id="return_postal_zip_code" translate="label" type="text" sortOrder="690" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Postal Zip Code</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>Canadian Postal Code for the return-recipient address.</comment>
+                </field>
+                <field id="return_notification" translate="label" type="text" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Return Notification Email</label>
+                    <validate>required-entry validate-email</validate>
+                    <depends>
+                        <field id="return_label">1</field>
+                    </depends>
+                    <comment>The email address that an on-delivery notification will be sent to when the return shipment is delivered.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

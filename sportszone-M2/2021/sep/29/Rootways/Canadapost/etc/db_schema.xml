@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="rw_canadapost_manifest" resource="default" engine="innodb" comment="Rootways Canadapost Manifest">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="text" name="manifest_id" nullable="false" comment="Manifest ID"/>
+        <column xsi:type="text" name="group_id" nullable="false" comment="Group ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Order ID"/>
+        <column xsi:type="text" name="status" comment="Status ID"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Manifest Creation"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Manifest Updation"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="RW_CANADAPOST_MANIFEST_STORE_ID_STORE_STORE_ID"
+                table="rw_canadapost_manifest" column="store_id"
+                referenceTable="store" referenceColumn="store_id"
+                onDelete="CASCADE"/>
+    </table>
+    
+    <table name="rw_canadapost_shipment" resource="default" engine="innodb" comment="Rootways Canadapost Shipment">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true"
+                comment="ID" />
+        <column xsi:type="varchar" name="increment_id" nullable="true" length="50"
+                comment="Magento Increment ID"/>
+        <column xsi:type="int" name="magento_shipment_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Magento Shipment ID"/>
+        <column xsi:type="int" name="manifest_id" unsigned="true" nullable="true"
+                comment="ID"/>
+        <column xsi:type="varchar" name="canadapost_shipment_id" nullable="true" length="32"
+                comment="Canadapost Shipment ID"/>
+        <column xsi:type="varchar" name="canadapost_tracking_number" nullable="true" length="32"
+                comment="Canadapost Tracking Number"/>
+        <column xsi:type="decimal" name="canadapost_shipment_amount" scale="4" precision="20" unsigned="false"
+                nullable="true" comment="Canadapost Shipment Amount"/>
+        <column xsi:type="decimal" name="rated_weight" scale="4" precision="20" unsigned="false"
+                nullable="true" comment="Shipment Rated Weight"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Manifest Creation"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Date of Manifest Updation"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="RW_CANADAPOST_SHIPMENT_STORE_ID_STORE_STORE_ID"
+                table="rw_canadapost_shipment" column="store_id"
+                referenceTable="store" referenceColumn="store_id"
+                onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="RW_CANADAPOST_SHIPMENT_MAGENTO_SHIPMENT_ID_SALES_SHIPMENT_ENTITY_ID"
+                table="rw_canadapost_shipment" column="magento_shipment_id"
+                referenceTable="sales_shipment" referenceColumn="entity_id"
+                onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="RW_CANADAPOST_SHIPMENT_MANIFEST_ID_RW_CANADAPOST_MANIFEST_ID"
+                table="rw_canadapost_shipment" column="manifest_id"
+                referenceTable="rw_canadapost_manifest" referenceColumn="id"
+                onDelete="CASCADE"/>
+    </table>
+</schema>

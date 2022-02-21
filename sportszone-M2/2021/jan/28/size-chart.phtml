@@ -1,0 +1,10 @@
+<?php
+
+$product = $block->getProduct();
+$chart1=$product->getData('size_chart');
+if ($chart1 != '') {
+?>
+<p class="custom-size-chart"><?php echo $chart1; ?></p>
+<?php }else { ?>
+<p>Please refer to the image</p>
+<?php } ?>

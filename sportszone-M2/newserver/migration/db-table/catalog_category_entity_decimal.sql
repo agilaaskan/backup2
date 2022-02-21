@@ -1,0 +1,343 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.7
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Jun 25, 2021 at 12:15 AM
+-- Server version: 10.2.38-MariaDB-log-cll-lve
+-- PHP Version: 7.3.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `m2sportszonecana_newv3`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catalog_category_entity_decimal`
+--
+
+CREATE TABLE `catalog_category_entity_decimal` (
+  `value_id` int(11) NOT NULL COMMENT 'Value ID',
+  `attribute_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Attribute ID',
+  `store_id` smallint(5) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Store ID',
+  `entity_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Entity ID',
+  `value` decimal(20,6) DEFAULT NULL COMMENT 'Value'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Catalog Category Decimal Attribute Backend Table';
+
+--
+-- Dumping data for table `catalog_category_entity_decimal`
+--
+
+INSERT INTO `catalog_category_entity_decimal` (`value_id`, `attribute_id`, `store_id`, `entity_id`, `value`) VALUES
+(243, 70, 0, 2, NULL),
+(487, 70, 0, 1136, NULL),
+(488, 70, 0, 1137, NULL),
+(489, 70, 0, 1138, NULL),
+(490, 70, 0, 1139, NULL),
+(491, 70, 0, 1140, NULL),
+(493, 70, 0, 1142, NULL),
+(497, 70, 0, 2379, NULL),
+(498, 70, 0, 2291, NULL),
+(499, 70, 0, 2227, NULL),
+(500, 70, 0, 2359, NULL),
+(501, 70, 0, 2420, NULL),
+(502, 70, 0, 2385, NULL),
+(503, 70, 0, 2234, NULL),
+(504, 70, 0, 2390, NULL),
+(510, 70, 0, 2317, NULL),
+(583, 70, 0, 2318, NULL),
+(584, 70, 0, 2319, NULL),
+(585, 70, 0, 2320, NULL),
+(586, 70, 0, 2321, NULL),
+(587, 70, 0, 2322, NULL),
+(588, 70, 0, 2323, NULL),
+(589, 70, 0, 2238, NULL),
+(592, 70, 0, 2228, NULL),
+(593, 70, 0, 2229, NULL),
+(594, 70, 0, 2230, NULL),
+(595, 70, 0, 2231, NULL),
+(596, 70, 0, 2232, NULL),
+(597, 70, 0, 2233, NULL),
+(598, 70, 0, 2235, NULL),
+(599, 70, 0, 2236, NULL),
+(600, 70, 0, 2237, NULL),
+(601, 70, 0, 2239, NULL),
+(602, 70, 0, 2240, NULL),
+(603, 70, 0, 2241, NULL),
+(604, 70, 0, 2242, NULL),
+(611, 70, 0, 2292, NULL),
+(612, 70, 0, 2293, NULL),
+(614, 70, 0, 2295, NULL),
+(615, 70, 0, 2296, NULL),
+(616, 70, 0, 2297, NULL),
+(617, 70, 0, 2298, NULL),
+(618, 70, 0, 2299, NULL),
+(619, 70, 0, 2300, NULL),
+(620, 70, 0, 2301, NULL),
+(621, 70, 0, 2302, NULL),
+(622, 70, 0, 2303, NULL),
+(623, 70, 0, 2304, NULL),
+(624, 70, 0, 2305, NULL),
+(625, 70, 0, 2306, NULL),
+(626, 70, 0, 2307, NULL),
+(627, 70, 0, 2308, NULL),
+(628, 70, 0, 2309, NULL),
+(629, 70, 0, 2310, NULL),
+(630, 70, 0, 2311, NULL),
+(631, 70, 0, 2312, NULL),
+(632, 70, 0, 2360, NULL),
+(633, 70, 0, 2361, NULL),
+(647, 70, 0, 2380, NULL),
+(648, 70, 0, 2381, NULL),
+(649, 70, 0, 2382, NULL),
+(650, 70, 0, 2383, NULL),
+(651, 70, 0, 2384, NULL),
+(652, 70, 0, 2386, NULL),
+(653, 70, 0, 2387, NULL),
+(654, 70, 0, 2391, NULL),
+(655, 70, 0, 2392, NULL),
+(656, 70, 0, 2393, NULL),
+(657, 70, 0, 2394, NULL),
+(658, 70, 0, 2395, NULL),
+(659, 70, 0, 2396, NULL),
+(660, 70, 0, 2397, NULL),
+(661, 70, 0, 2398, NULL),
+(662, 70, 0, 2399, NULL),
+(663, 70, 0, 2400, NULL),
+(664, 70, 0, 2401, NULL),
+(666, 70, 0, 2409, NULL),
+(667, 70, 0, 2410, NULL),
+(669, 70, 0, 2494, NULL),
+(670, 70, 0, 2495, NULL),
+(671, 70, 0, 2496, NULL),
+(672, 70, 0, 2451, NULL),
+(673, 70, 0, 2452, NULL),
+(674, 70, 0, 2453, NULL),
+(675, 70, 0, 2454, NULL),
+(676, 70, 0, 2455, NULL),
+(677, 70, 0, 2370, NULL),
+(678, 70, 0, 2457, NULL),
+(679, 70, 0, 2371, NULL),
+(682, 70, 0, 2487, NULL),
+(683, 70, 0, 2425, NULL),
+(684, 70, 0, 2429, NULL),
+(685, 70, 0, 2433, NULL),
+(686, 70, 0, 2436, NULL),
+(687, 70, 0, 2437, NULL),
+(688, 70, 0, 2438, NULL),
+(689, 70, 0, 2441, NULL),
+(693, 70, 0, 2596, NULL),
+(694, 70, 0, 2561, NULL),
+(695, 70, 0, 2432, NULL),
+(696, 70, 0, 2431, NULL),
+(699, 70, 0, 2594, NULL),
+(701, 70, 0, 2430, NULL),
+(702, 70, 0, 2530, NULL),
+(703, 70, 0, 2579, NULL),
+(704, 70, 0, 2567, NULL),
+(705, 70, 0, 2558, NULL),
+(706, 70, 0, 2608, NULL),
+(707, 70, 0, 2546, NULL),
+(708, 70, 0, 2571, NULL),
+(709, 70, 0, 2605, NULL),
+(710, 70, 0, 2606, NULL),
+(711, 70, 0, 2512, NULL),
+(712, 70, 0, 2513, NULL),
+(713, 70, 0, 2532, NULL),
+(714, 70, 0, 2533, NULL),
+(715, 70, 0, 2537, NULL),
+(716, 70, 0, 2573, NULL),
+(717, 70, 0, 2584, NULL),
+(718, 70, 0, 2589, NULL),
+(719, 70, 0, 2516, NULL),
+(720, 70, 0, 2517, NULL),
+(721, 70, 0, 2544, NULL),
+(722, 70, 0, 2569, NULL),
+(723, 70, 0, 2421, NULL),
+(724, 70, 0, 2519, NULL),
+(725, 70, 0, 2540, NULL),
+(726, 70, 0, 2553, NULL),
+(727, 70, 0, 2556, NULL),
+(728, 70, 0, 2575, NULL),
+(729, 70, 0, 2576, NULL),
+(730, 70, 0, 2577, NULL),
+(731, 70, 0, 2578, NULL),
+(732, 70, 0, 2593, NULL),
+(733, 70, 0, 2582, NULL),
+(734, 70, 0, 2559, NULL),
+(735, 70, 0, 2570, NULL),
+(736, 70, 0, 2588, NULL),
+(737, 70, 0, 2602, NULL),
+(738, 70, 0, 2599, NULL),
+(739, 70, 0, 2603, NULL),
+(740, 70, 0, 2597, NULL),
+(748, 70, 0, 2518, NULL),
+(749, 70, 0, 2535, NULL),
+(750, 70, 0, 2538, NULL),
+(751, 70, 0, 2545, NULL),
+(752, 70, 0, 2554, NULL),
+(753, 70, 0, 2560, NULL),
+(754, 70, 0, 2585, NULL),
+(755, 70, 0, 2590, NULL),
+(756, 70, 0, 2601, NULL),
+(757, 70, 0, 2527, NULL),
+(758, 70, 0, 2536, NULL),
+(759, 70, 0, 2548, NULL),
+(760, 70, 0, 2550, NULL),
+(761, 70, 0, 2566, NULL),
+(762, 70, 0, 2592, NULL),
+(763, 70, 0, 2531, NULL),
+(764, 70, 0, 2600, NULL),
+(765, 70, 0, 2426, NULL),
+(766, 70, 0, 2427, NULL),
+(767, 70, 0, 2428, NULL),
+(768, 70, 0, 2587, NULL),
+(769, 70, 0, 2434, NULL),
+(770, 70, 0, 2514, NULL),
+(771, 70, 0, 2515, NULL),
+(772, 70, 0, 2552, NULL),
+(773, 70, 0, 2557, NULL),
+(774, 70, 0, 2562, NULL),
+(775, 70, 0, 2598, NULL),
+(776, 70, 0, 2542, NULL),
+(777, 70, 0, 2563, NULL),
+(778, 70, 0, 2565, NULL),
+(779, 70, 0, 2604, NULL),
+(780, 70, 0, 2439, NULL),
+(781, 70, 0, 2440, NULL),
+(782, 70, 0, 2525, NULL),
+(783, 70, 0, 2541, NULL),
+(784, 70, 0, 2564, NULL),
+(785, 70, 0, 2501, NULL),
+(786, 70, 0, 2502, NULL),
+(787, 70, 0, 2547, NULL),
+(795, 70, 0, 2644, NULL),
+(796, 70, 0, 2645, NULL),
+(797, 70, 0, 2651, NULL),
+(798, 70, 0, 2646, NULL),
+(939, 70, 0, 2709, NULL),
+(940, 70, 0, 2711, NULL),
+(941, 70, 0, 2782, NULL),
+(942, 70, 0, 2848, NULL),
+(943, 70, 0, 2888, NULL),
+(964, 70, 0, 2668, NULL),
+(965, 70, 0, 2669, NULL),
+(966, 70, 0, 2692, NULL),
+(967, 70, 0, 2745, NULL),
+(968, 70, 0, 2758, NULL),
+(969, 70, 0, 2853, NULL),
+(970, 70, 0, 2874, NULL),
+(971, 70, 0, 2879, NULL),
+(972, 70, 0, 2727, NULL),
+(973, 70, 0, 2769, NULL),
+(974, 70, 0, 2776, NULL),
+(975, 70, 0, 2886, NULL),
+(976, 70, 0, 2681, NULL),
+(977, 70, 0, 2768, NULL),
+(978, 70, 0, 2788, NULL),
+(979, 70, 0, 2787, NULL),
+(980, 70, 0, 2786, NULL),
+(1015, 70, 0, 2682, NULL),
+(1017, 70, 0, 2746, NULL),
+(1018, 70, 0, 2753, NULL),
+(1019, 70, 0, 2784, NULL),
+(1021, 70, 0, 2851, NULL),
+(1027, 70, 0, 2887, NULL),
+(1041, 70, 0, 3080, NULL),
+(1042, 70, 0, 3005, NULL),
+(1043, 70, 0, 3006, NULL),
+(1044, 70, 0, 3007, NULL),
+(1045, 70, 0, 3008, NULL),
+(1046, 70, 0, 3009, NULL),
+(1047, 70, 0, 3010, NULL),
+(1048, 70, 0, 3011, NULL),
+(1049, 70, 0, 3012, NULL),
+(1050, 70, 0, 3013, NULL),
+(1051, 70, 0, 3082, NULL),
+(1054, 70, 0, 2911, NULL),
+(1069, 70, 0, 2909, NULL),
+(1070, 70, 0, 2910, NULL),
+(1071, 70, 0, 2917, NULL),
+(1072, 70, 0, 2920, NULL),
+(1073, 70, 0, 2989, NULL),
+(1074, 70, 0, 2995, NULL),
+(1075, 70, 0, 2921, NULL),
+(1076, 70, 0, 2924, NULL),
+(1077, 70, 0, 2933, NULL),
+(1078, 70, 0, 2932, NULL),
+(1079, 70, 0, 2913, NULL),
+(1080, 70, 0, 3083, NULL),
+(1081, 70, 0, 3084, NULL),
+(1082, 70, 0, 3085, NULL),
+(1083, 70, 0, 3086, NULL),
+(1084, 70, 0, 3087, NULL),
+(1107, 70, 0, 3109, NULL),
+(1116, 70, 0, 3118, NULL),
+(1119, 70, 0, 3121, NULL),
+(1120, 70, 0, 3122, NULL),
+(1121, 70, 0, 3123, NULL),
+(1122, 70, 0, 3124, NULL),
+(1123, 70, 0, 3125, NULL),
+(1124, 70, 0, 3126, NULL),
+(1125, 70, 0, 3127, NULL),
+(1126, 70, 0, 3128, NULL),
+(1127, 70, 0, 3129, NULL),
+(1128, 70, 0, 3130, NULL),
+(1129, 70, 0, 3131, NULL),
+(1130, 70, 0, 3132, NULL),
+(1133, 70, 0, 3135, NULL),
+(1134, 70, 0, 3136, NULL),
+(1138, 70, 0, 3140, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `catalog_category_entity_decimal`
+--
+ALTER TABLE `catalog_category_entity_decimal`
+  ADD PRIMARY KEY (`value_id`),
+  ADD UNIQUE KEY `CATALOG_CATEGORY_ENTITY_DECIMAL_ENTITY_ID_ATTRIBUTE_ID_STORE_ID` (`entity_id`,`attribute_id`,`store_id`),
+  ADD KEY `CATALOG_CATEGORY_ENTITY_DECIMAL_ENTITY_ID` (`entity_id`),
+  ADD KEY `CATALOG_CATEGORY_ENTITY_DECIMAL_ATTRIBUTE_ID` (`attribute_id`),
+  ADD KEY `CATALOG_CATEGORY_ENTITY_DECIMAL_STORE_ID` (`store_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `catalog_category_entity_decimal`
+--
+ALTER TABLE `catalog_category_entity_decimal`
+  MODIFY `value_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Value ID', AUTO_INCREMENT=1151;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `catalog_category_entity_decimal`
+--
+ALTER TABLE `catalog_category_entity_decimal`
+  ADD CONSTRAINT `CATALOG_CATEGORY_ENTITY_DECIMAL_STORE_ID_STORE_STORE_ID` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `CAT_CTGR_ENTT_DEC_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `CAT_CTGR_ENTT_DEC_ENTT_ID_CAT_CTGR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `catalog_category_entity` (`entity_id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
