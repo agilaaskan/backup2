@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.48.1" platform="windows">
+	<Servers>
+		<Server>
+			<Host>f7a0be9f9e.nxcli.net</Host>
+			<Port>22</Port>
+			<Protocol>1</Protocol>
+			<Type>0</Type>
+			<User>adf2e5f2_2</User>
+			<Pass encoding="base64">VmVnYW5zUGVlc0ZlbW9yYVN3b29wcw==</Pass>
+			<Logontype>1</Logontype>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>mcwigs-staginglive</Name>
+			<Comments>VegansPeesFemoraSwoops</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.48.1" platform="windows">
+	<Servers>
+		<Server>
+			<Host>2e240663a5.nxcli.net</Host>
+			<Port>22</Port>
+			<Protocol>1</Protocol>
+			<Type>0</Type>
+			<User>adc5d82c_2</User>
+			<Pass encoding="base64">SG9va3lUYXJnZXRMYXJkc0Zyb250</Pass>
+			<Logontype>1</Logontype>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>mcwigs-oldstaging</Name>
+			<Comments>HookyTargetLardsFront</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>

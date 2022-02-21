@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.48.1" platform="windows">
+	<Servers>
+		<Server>
+			<Host>one.extremesports.com.kw</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>demo@one.extremesports.com.kw</User>
+			<Pass encoding="base64">V2ViJHBlZWRAMTIz</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_ACTIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>extremesports-staging</Name>
+			<Comments>Web$peed@123</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>

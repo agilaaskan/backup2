@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FileZilla3 version="3.48.1" platform="windows">
+	<Servers>
+		<Server>
+			<Host>staging.sfparty.com</Host>
+			<Port>21</Port>
+			<Protocol>0</Protocol>
+			<Type>0</Type>
+			<User>admin@staging.sfparty.com</User>
+			<Pass encoding="base64">R0xPQkU0UC5Jd2JAIQ==</Pass>
+			<Logontype>1</Logontype>
+			<PasvMode>MODE_ACTIVE</PasvMode>
+			<EncodingType>Auto</EncodingType>
+			<BypassProxy>0</BypassProxy>
+			<Name>sfpartystaging</Name>
+			<Comments>GLOBE4P.Iwb@!</Comments>
+			<SyncBrowsing>0</SyncBrowsing>
+			<DirectoryComparison>0</DirectoryComparison>
+		</Server>
+	</Servers>
+</FileZilla3>
