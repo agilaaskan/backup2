@@ -1,0 +1,131 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_SocialLogin
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+$availableSocials = $block->getAvailableSocials();
+$childBlock = $block->getChildBlock('request.info');
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$baseUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+$customerSession = $objectManager->create('Magento\Customer\Model\Session'); 
+
+if ($block->canShow() && sizeof($availableSocials)) : ?>
+    <?php if (!$customerSession->isLoggedIn()) : ?>
+        <div class="block social-login-authentication-channel account-social-login">
+            <div class="block-content">
+                <h4>Register or Log in</h4>
+                <p>Create or Log in to your account using your existing social media account</p>
+            </div>
+            <div class="block-content">
+                <?php foreach ($availableSocials as $key => $social) : ?>
+                    <div class="actions-toolbar social-btn social-btn-actions-toolbar <?= $key ?>-login">
+                        <a class="btn btn-block btn-social btn-<?= $block->getBtnKey($key) ?>"
+                        data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>", "label": "<?= __('Login By %1', $social['label']) ?>"}}'>
+                            <span class="fa fa-<?= $block->getBtnKey($key) ?>"></span>
+                            <?= __('Continue with %1', $social['label']) ?>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endif;?>
+<?php endif; ?>
+<?php if ($childBlock->isRequireMoreInfo()) : ?>
+    <div id="social-login-popup" class="white-popup mfp-with-anim mfp-hide"
+         data-mage-init='{"Mageplaza_SocialLogin/js/popup":<?= $childBlock->getFormParams() ?>}'>
+        <?= $block->getChildHtml('request.info') ?>
+    </div>
+<?php endif; ?>
+<style type="text/css">
+    .request-popup{
+        overflow-y: unset;
+        max-width: 800px;
+        left: 30%;
+    }
+    .request-popup .modal-header{
+        padding: 0;
+    }
+    .request-popup .modal-header button.action-close{
+        color: white;
+        z-index: 100;
+    }
+    .request-popup .modal-content{
+        padding: 0;
+    }
+    .block.social-login-authentication-channel.account-social-login .block-content h4 {
+    color: red;
+    }
+    @media only screen and (max-width:463px){
+        .block.social-login-authentication-channel.account-social-login .block-content .actions-toolbar.social-btn {
+        width: 100%;
+        }
+        .block.social-login-authentication-channel.account-social-login .block-content{
+            text-align: left;
+        }
+    }
+    div#shipping-new-address-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+div.field[name="shippingAddress.postcode"] {
+    order: 1;
+    width: 100%;
+}
+div.field[name="shippingAddress.region_id"] {
+    order: 2;
+}
+div.field[name="shippingAddress.city"] {
+    order: 3;
+}
+
+
+</style>
+<script>
+    require([
+    'jquery'
+], function ($) {
+jQuery( "body" ).delegate( 'input[name="postcode"]', "keyup", function() {
+    var zip =jQuery('input[name="postcode"]').val();
+     (async () => {
+    const where = encodeURIComponent(JSON.stringify({
+      "postalCode": zip
+    }));
+    const response = await fetch(
+      `https://parseapi.back4app.com/classes/Dataset_India_Pin_Code?limit=1&where=${where}`,
+      {
+        headers: {
+          'X-Parse-Application-Id': 'G7Z8d2KcYmU0WsiPgFIZS43FUBLvarKdx5MtgyLs', // This is the fake app's application id
+          'X-Parse-Master-Key': 'TRxCvj4TyIJFd2NBs5XyXeQxAqUpm7SageFJ2sUZ', // This is the fake app's readonly master key
+        }
+      }
+    );
+    const data = await response.json(); // Here you have the data that you need
+    // console.log(JSON.stringify(data, null, 2));
+var state = data.results[0].adminName1; 
+var city = data.results[0].adminName2; 
+// var district = data.results[0].placeName; 
+jQuery('option[data-title="'+state+'"]').prop('selected', true);
+// jQuery('input[name="street[1]"]').val(district);
+jQuery('input[name="city"]').val(city);
+  })();
+ });
+});
+</script>

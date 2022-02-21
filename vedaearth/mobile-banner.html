@@ -1,0 +1,48 @@
+<div class="slider_mobileview visible-xs" style="box-shadow: 0 3px 5px #3e3c3cdb;">
+<div id="mobile-banner-slider-lt" class="owl-carousel owl-middle-narrow owl-banner-carousel">
+
+  <div class="item" style="width: 100%;max-width:100%">
+            <a href="staging/shop-all"><img src="{{media url=&quot;wysiwyg/Main_m.jpg&quot;}}"  alt="" /></a>
+        </div>
+ <div class="item" style="width: 100%;max-width:100%">
+            <a href="staging/shop-all"><img src="{{media url=&quot;wysiwyg/Skin_m.jpg&quot;}}"  alt="" /></a>
+        </div>
+<div class="item" style="width: 100%;max-width:100%">
+            <a href="staging/shop-all"><img src="{{media url=&quot;wysiwyg/Facial_oil_m.jpg&quot;}}"  alt="" /></a>
+        </div>
+ <div class="item" style="width: 100%;max-width:100%">
+            <a href="staging/shop-all"><img src="{{media url=&quot;wysiwyg/Body_m.jpg&quot;}}"  alt="" /></a>
+        </div>
+
+</div>
+  <style>
+    @media (max-width:767px)
+    {
+    #mobile-banner-slider-lt.owl-theme .owl-dots .owl-dot span{border:2px solid #976126;background:none !important;width:12px;height:12px;}
+    #mobile-banner-slider-lt .owl-dots .owl-dot.active span{background:#fff!important;width:12px;height:12px;}
+    .slider_mobileview .owl-middle-narrow.owl-theme .owl-controls{top:98%;}
+    }
+    </style>
+      <script type="text/javascript">
+        require([
+          'jquery',
+          'owl.carousel/owl.carousel.min'
+        ], function ($) {
+          var owl_65 = $("#mobile-banner-slider-lt.owl-banner-carousel").owlCarousel({
+            items: 1,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            autoplayHoverPause: true,
+            dots: false,
+            lazyLoad:true,
+            navRewind: true,
+            animateIn: 'fadeIn',
+            animateOut: 'fadeOut',
+            loop: true,
+            nav: false,
+            dots: true,
+            navText:false
+          });
+        });
+      </script>
+</div>

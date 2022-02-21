@@ -1,0 +1,53 @@
+<?php
+$_product = $block->getProduct();
+$countryOfManufactureAttr = $_product->getData('country_of_manufacture');
+$productExpiryDate = $_product->getData('product_expiry_date');
+$newProductExpiryDate = date("d-M-Y", strtotime($productExpiryDate));  
+$nameOfManufacturer = $_product->getData('name_of_manufacturer');
+$addressOfManufacturer = $_product->getData('address_of_manufacturer');
+$countryOfManufactureFull = $_product->getResource()->getAttribute('country_of_manufacture')->getFrontend()->getValue($_product);
+
+if ($productExpiryDate !=NULL) {
+
+?>
+<div class="manufacturer-wrapper">
+    <div class="mf_info-title">
+        Manufacturer Info
+    </div>
+    <ul>
+        <li style="<?php if ($countryOfManufactureFull == NULL){echo "display: none";} ?>"><b>Country of Origin:</b>&nbsp;&nbsp;<?php echo $countryOfManufactureFull;?></li>
+        <li style="<?php if ($nameOfManufacturer ==NULL){echo "display: none";} ?>"><b>Name of Manufacturer/Packer:</b>&nbsp;&nbsp;<?php echo $nameOfManufacturer;?></li>
+        <li style="<?php if ($addressOfManufacturer ==NULL){echo "display: none";} ?>"><b>Address of Manufacturer / Packer:</b>&nbsp;&nbsp;<?php echo $addressOfManufacturer;?></li>
+    </ul>
+</div>
+<?php } ?>
+<style type="text/css" media="screen">
+.manufacturer-wrapper ul li ::marker {vertical-align: middle;}
+.manufacturer-wrapper ul   {padding-left: 20px;
+    font: normal normal normal 16px/20px Lato;
+    letter-spacing: 0.14px;
+    color: #5B5B5B;
+    list-style-image: url(/pub/media/wysiwyg/tick.svg);
+}
+.manufacturer-wrapper .mf_info-title {color: #022169 !important;    padding: 10px 0px 5px;
+    font-size: 18.5px;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;}
+.manufacturer-wrapper {background: #F5EAE7;padding: 25px;justify-content: center;    border-style: solid;
+    border-width: 0.1px;
+    border-image: linear-gradient(to right, rgba(185, 137, 44) 1%, rgba(151, 97, 38) 50%, rgba(211, 179, 72) 100%) 100% 0 100% 0/5px 0 5px 0 stretch;}
+
+@media (min-width: 767px){
+.manufacturer-wrapper {padding:15px 40px;}
+.manufacturer-wrapper ul {width: 73%;margin: 10px auto;}
+.manufacturer-wrapper ul {padding-left: 20px;font: normal normal normal 16px/20px Lato;}
+}
+
+@media (max-width: 767px){
+.manufacturer-wrapper {padding:25px 10px;}
+.manufacturer-wrapper .mf_info-title {padding: 10px 0px 15px;}
+}
+</style>
+

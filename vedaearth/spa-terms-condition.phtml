@@ -1,0 +1,11 @@
+ <?php $_product = $block->getProduct(); 
+     $spa_terms_contion=$_product->getData('custom_block_2');
+     if ($spa_terms_contion == !NULL):?>   
+
+    <div class="spa-terms-contion">
+    	<div class="spa-title">Terms & Condition</div><br>
+    	<div class="spa-terms-condition-content">
+    	<?php echo $spa_terms_contion;?>
+ </div>
+    </div>
+    <?php endif; ?>
