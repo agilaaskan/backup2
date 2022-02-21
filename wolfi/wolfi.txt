@@ -1,0 +1,7 @@
+185.56.84.104
+18765
+wolfisbike
+Web$peed@123
+
+cd public_html
+ /usr/local/php72/bin/php-cli bin/magento
